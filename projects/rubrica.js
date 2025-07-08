@@ -1,3 +1,45 @@
+// creiamo una costante con il nome della chiave che andrò ad utilizzare
+// nel localStorage
+const memoryKey = 'contacts-memory'
+
+const generateCard = function (contatto) {
+  const contactsRow = document.getElementById('contacts-row')
+  contactsRow.innerHTML += `
+      <div class="col col-12 col-md-4 col-lg-3">
+        <div class="card">
+          <img src="https://placecats.com/300/300" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">${contatto.firstName} ${contatto.lastName}</h5>
+            <p class="card-text">${contatto.phone}</p>
+          </div>
+        </div>
+      </div>
+    `
+}
+
+// contactsArray sarà l'array dei contatti recuperati dal localStorage; in caso
+// non ce ne siano, allora partirà da array vuoto
+
+// VERSIONE HARD
+// const contactsArray = localStorage.getItem(memoryKey)
+//   ? JSON.parse(localStorage.getItem(memoryKey))
+//   : []
+// VERSIONE EASY
+let contactsArray
+if (localStorage.getItem(memoryKey)) {
+  contactsArray = JSON.parse(localStorage.getItem(memoryKey))
+} else {
+  contactsArray = []
+}
+console.log('contactsArray', contactsArray)
+
+if (contactsArray.length > 0) {
+  // se abbiamo dei contatti precedentemente salvati...
+  contactsArray.forEach((contatto) => {
+    generateCard(contatto)
+  })
+}
+
 // qui dentro inseriremo la logica per recuperare i valori dal form
 // e creare un oggetto relativo al contatto salvato utilizzando una classe JS
 
@@ -29,18 +71,13 @@ formElement.addEventListener('submit', function (e) {
   )
   console.log('Ho creato un contatto', nuovoContatto)
   // appendo il contatto nel DOM
-  const contactsRow = document.getElementById('contacts-row')
-  contactsRow.innerHTML += `
-    <div class="col col-12 col-md-4 col-lg-3">
-      <div class="card" style="width: 18rem;">
-        <img src="https://avatar.iran.liara.run/public" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">${nuovoContatto.firstName} ${nuovoContatto.lastName}</h5>
-          <p class="card-text">${nuovoContatto.phone}</p>
-        </div>
-      </div>
-    </div>
-  `
+  generateCard(nuovoContatto)
+  // provvedo anche a salvare il contatto appena creato nel localStorage
+  // prima di tutto lo pusho nel contactsArray che ho definito in JS
+  contactsArray.push(nuovoContatto)
+  // ora contactsArray ha almeno un oggetto, devo salvarlo in localStorage
+  localStorage.setItem(memoryKey, JSON.stringify(contactsArray))
+
   // svuoto il form
   formElement.reset()
 })
