@@ -1,0 +1,15 @@
+{
+    "firstName": "Stefano",
+    "lastName": "Casasola",
+    "age": 19,
+    "region": "Italy",
+    "teacher": true,
+    "skills": [
+        "HTML",
+        "JS"
+    ],
+    "pets": {
+        "leo": "cat",
+        "thor": "cat"
+    }
+}

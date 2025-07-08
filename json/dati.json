@@ -1,0 +1,45 @@
+[
+    {
+        "firstName": "Stefano",
+        "lastName": "Casasola",
+        "age": 19,
+        "region": "Italy",
+        "teacher": true,
+        "skills": [
+            "HTML",
+            "JS"
+        ],
+        "pets": {
+            "leo": "cat",
+            "thor": "cat"
+        }
+    },
+    {
+        "firstName": "Gianni",
+        "lastName": "Pomelli",
+        "age": 19,
+        "region": "Italy",
+        "teacher": true,
+        "skills": [
+            "HTML",
+            "JS"
+        ],
+        "pets": {
+            "poppy": "parrot"
+        }
+    },
+    {
+        "firstName": "Giulio",
+        "lastName": "Bernazzi",
+        "age": 29,
+        "region": "Italy",
+        "teacher": true,
+        "skills": [
+            "HTML",
+            "JS"
+        ],
+        "pets": {
+            "thor": "dog"
+        }
+    }
+]
